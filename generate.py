@@ -33,8 +33,8 @@ def generate_image():
 
     try:
         # We use a relative path now since it is in the same GitHub folder
-        font_shloka = ImageFont.truetype("NotoSansDevanagari-Regular.ttf", 42)
-        font_meaning = ImageFont.truetype("NotoSansDevanagari-Regular.ttf", 36)
+        font_shloka = ImageFont.truetype("NotoSansDevanagari-VariableFont_wdth,wght.ttf", 42)
+        font_meaning = ImageFont.truetype("NotoSansDevanagari-VariableFont_wdth,wght.ttf", 36)
     except Exception as e:
         print(f"Font error: {e}")
         font_shloka = font_meaning = ImageFont.load_default()
