@@ -1,7 +1,7 @@
 import requests
 from PIL import Image, ImageDraw, ImageFont
 
-GAS_URL = "https://script.google.com/macros/s/AKfycbzc6SALn33T7VORFqQehedJMYbyzL9uGbM1qIhuMQ5Hg5G4mwTwivRhdneyCJDFQEdR_Q/exec" 
+GAS_URL = "https://script.google.com/macros/s/AKfycbw3fNeQEZluPDT4m3Pj-HtXL2wikqQEkYy65uPvu6QN4PDA7c357YIB6o2Ut8mIh33PJQ/exec" 
 
 def wrap_text(text, font, max_width, draw):
     lines = []
@@ -28,7 +28,7 @@ def generate_image():
         d2_text = str(e)
 
     # 0 = White background for ESP32 mapping
-    img = Image.new('1', (800, 480), color=0)
+    img = Image.new('1', (800, 480), color=1)
     draw = ImageDraw.Draw(img)
 
     try:
@@ -40,7 +40,7 @@ def generate_image():
         font_shloka = font_meaning = ImageFont.load_default()
 
     # 1 = Black text/lines for ESP32 mapping
-    draw.line((0, 240, 800, 240), fill=1, width=4)
+    draw.line((0, 240, 800, 240), fill=0, width=4)
 
     c2_lines = wrap_text(c2_text, font_shloka, 740, draw)
     total_height_c2 = len(c2_lines) * 60
@@ -48,7 +48,7 @@ def generate_image():
     for line in c2_lines:
         line_width = draw.textlength(line, font=font_shloka)
         x = (800 - line_width) // 2 
-        draw.text((x, y), line, font=font_shloka, fill=1)
+        draw.text((x, y), line, font=font_shloka, fill=0)
         y += 60 
 
     d2_lines = wrap_text(d2_text, font_meaning, 740, draw)
@@ -57,7 +57,7 @@ def generate_image():
     for line in d2_lines:
         line_width = draw.textlength(line, font=font_meaning)
         x = (800 - line_width) // 2 
-        draw.text((x, y), line, font=font_meaning, fill=1)
+        draw.text((x, y), line, font=font_meaning, fill=0)
         y += 50
 
     # Save as a raw binary file instead of returning a web response
